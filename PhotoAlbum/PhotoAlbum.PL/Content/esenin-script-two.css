@@ -1,0 +1,12 @@
+/*****************************
+ All rights reserved.
+ AllFont.net (c) 2011-2015
+ *****************************/
+@font-face {
+    font-family: 'Esenin script Two';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Esenin script Two'), local('EseninscriptTwo-Regular'),
+        url(http://allfont.net/cache/fonts/esenin-script-two_634e6b47a1a7fe9241499a5b353422dc.woff) format('woff'),
+        url(http://allfont.net/cache/fonts/esenin-script-two_634e6b47a1a7fe9241499a5b353422dc.ttf) format('truetype');
+}

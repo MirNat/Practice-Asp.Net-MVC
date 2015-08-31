@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;
+}
+Album: <a href="#/Album/{{album.Id}}/Photos" ng-bind="album.Name"></a>
+Author: <a href="#" ui-sref="Authorized.UserProfile.Albums({ id:album.AuthorId})" ng-bind="album.AuthorUserName"></a>@*/UserProfile/{{album.AuthorId}}/Albums/*@
+<label ng-repeat="category in album.Categories" ng-bind="category.Name" /></label>
+<label>Creation Date: </label>{{album.CreationDate| date:'medium'}}</label>
+<label>Modification Date: </label><label>{{album.ModificationDate| date:'medium'}}</label>
+<div ui-view></div>

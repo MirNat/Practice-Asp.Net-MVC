@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2 control-panel">
+            <header>
+                <a class="site-home-link" href="#">
+                    PhotoFan
+                </a>
+                <div ng-controller="manageTabController">
+                    <tabset style="cursor: pointer" class="list-group navs">
+                        <tab class="list-group-item nav" active="tabs[0].active" heading="Latest Public Albums" ui-sref="LatestPublicAlbums">
+                        </tab>
+                        <tab active="tabs[1].active" heading="All Public Albums" ui-sref="AllPublicAlbums">
+                        </tab>
+                        <tab active="tabs[2].active" heading="My Profile" ui-sref="MyProfile">
+                        </tab>
+                    </tabset>
+                </div>
+            </header>
+                <div ui-view></div>
+            
+            <footer>
+                Copyright &copy 2015
+                <br>
+                Contact: <a href="mailto:info@photofan.com"> info@photofan.com</a>
+            </footer>
+        </div>
+        <div class="col-md-10">
+            <div ui-view></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angularjs")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿<div class="btn-group dropup">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <button type="button" class="btn btn-default">Filter</button>
+    <ul class="dropdown-menu">
+        <li ng-repeat="category in categories| orderBy:'name'" ng-click="setSelectedCategory(category)">
+            <span ng-bind="category.name"></span>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">View All</a></li>
+    </ul>
+</div>

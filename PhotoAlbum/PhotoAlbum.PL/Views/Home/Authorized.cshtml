@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/custom-css")
+    @*@Scripts.Render("~/bundles/angularjs-api")*@
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+
+    <script src="~/Scripts/angularjs-api/app.module.js"></script>
+    <script src="~/Scripts/angularjs-api/app-config.js"></script>
+    <script src="~/Scripts/angularjs-api/controllers/album-controller.js"></script>
+    <script src="~/Scripts/angularjs-api/controllers/category-controller.js"></script>
+    <script src="~/Scripts/angularjs-api/controllers/manage-tab-controller.js"></script>
+    <script src="~/Scripts/angularjs-api/controllers/photo-controller.js"></script>
+    <script src="~/Scripts/angularjs-api/controllers/user-controller.js"></script>
+    <script src="~/Scripts/angularjs-api/services/album-service.js"></script>
+    <script src="~/Scripts/angularjs-api/services/category-service.js"></script>
+    <script src="~/Scripts/angularjs-api/services/photo-service.js"></script>
+    <script src="~/Scripts/angularjs-api/services/user-service.js"></script>
+
+</head>
+<body ng-app="photoAlbumApp">
+
+    <div class="row">
+        <div class="col-md-2 main-navigation-panel">
+            <!--header>
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <a class="site-home-link" href="#" ui-sref="Authorized.About">PhotoFan</a>
+                        <ul class="nav">
+                            <li><a href="#" ui-sref="Authorized.LatestPublications">Latest Public Albums</a></li>
+                            <li><a href="#" ui-sref="Authorized.AllPublications">All Public Albums</a></li>
+                            <li><a href="#" ui-sref="Authorized.MyProfile.Albums">My Profile</a></li>
+                        </ul>
+                    </div>
+                </div>-->
+            <div class="control-panel">
+                <header>
+                    <a href="#" ui-sref="Authorized.About" class="site-home-link">
+                        PhotoFan
+                    </a>
+                </header>
+                <div class="list-group navs">
+                    <a href="#" ui-sref="Authorized.LatestPublications" class="list-group-item nav">Latest Public Albums</a>
+                    <a href="#" ui-sref="Authorized.AllPublications" class="list-group-item nav">All Public Albums</a>
+                    <a href="#" ui-sref="Authorized.MyProfile.Albums" class="list-group-item nav">My Profile</a>
+                    <a href="#" ui-sref="Authorized.About" class="list-group-item nav">About</a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="list-group-item nav">Log off</a>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    }
+                </div>
+                <footer>
+                    Copyright &copy 2015
+                    <br>
+                    Contact: <a href="mailto:info@photofan.com"> info@photofan.com</a>
+                </footer>
+            </div>
+
+            <!--<tabset style="cursor: pointer" class="list-group navs" ng-controller="manageTabController">
+                <tab class="site-home-link" active="tabs[0].active" ui-sref="Authorized.About">PhotoFan</tab>
+                <tab class="list-group-item nav" active="tabs[1].active" heading="Latest Public Albums" ui-sref="Authorized.LatestPublications">
+                    Latest Public Albums
+                </tab>
+                <tab active="tabs[2].active" heading="All Public Albums" ui-sref="Authorized.AllPublications">
+                    All Public Album
+                </tab>
+                <tab active="tabs[3].active" heading="My Profile" ui-sref="Authorized.MyProfile">
+                    My Profile
+                </tab>
+            </tabset>-->
+            <!--</header>
+            <footer>
+                Copyright &copy 2015
+                <br>
+                Contact: <a href="mailto:info@photofan.com"> info@photofan.com</a>
+            </footer>-->
+        </div>
+        <div class="col-md-10 full-size-photo" ng-style="styleFullSizePhoto()">
+            <div ui-view></div>
+        </div>
+    </div>
+
+</body>
+</html>

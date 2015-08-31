@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Photo Album Rules" Description="These rules focus on the most critical problems in your code, including potential security holes, application crashes, and other important logic and design errors. It is recommended to include this rule set in any custom rule set you create for your projects." ToolsVersion="10.0">
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1007" Action="Error" />
+    <Rule Id="CA1012" Action="Error" />
+    <Rule Id="CA1016" Action="Error" />
+    <Rule Id="CA1017" Action="Error" />
+    <Rule Id="CA1018" Action="Error" />
+    <Rule Id="CA1019" Action="Error" />
+    <Rule Id="CA1021" Action="Error" />
+    <Rule Id="CA1025" Action="Error" />
+    <Rule Id="CA1030" Action="None" />
+    <Rule Id="CA1039" Action="Error" />
+    <Rule Id="CA1040" Action="None" />
+    <Rule Id="CA1044" Action="Error" />
+    <Rule Id="CA1047" Action="Error" />
+    <Rule Id="CA1048" Action="Error" />
+    <Rule Id="CA1050" Action="Error" />
+    <Rule Id="CA1058" Action="Error" />
+    <Rule Id="CA1060" Action="Error" />
+    <Rule Id="CA1400" Action="Error" />
+    <Rule Id="CA1401" Action="Error" />
+    <Rule Id="CA1415" Action="Error" />
+    <Rule Id="CA1502" Action="Warning" />
+    <Rule Id="CA1700" Action="Error" />
+    <Rule Id="CA1719" Action="Error" />
+    <Rule Id="CA1720" Action="Error" />
+    <Rule Id="CA1721" Action="Error" />
+    <Rule Id="CA1800" Action="Error" />
+    <Rule Id="CA1801" Action="Error" />
+    <Rule Id="CA1802" Action="Error" />
+    <Rule Id="CA1804" Action="Error" />
+    <Rule Id="CA1806" Action="Error" />
+    <Rule Id="CA1809" Action="Error" />
+    <Rule Id="CA1811" Action="Warning" />
+    <Rule Id="CA1812" Action="Warning" />
+    <Rule Id="CA1813" Action="Error" />
+    <Rule Id="CA1815" Action="Error" />
+    <Rule Id="CA1819" Action="None" />
+    <Rule Id="CA1820" Action="Error" />
+    <Rule Id="CA1821" Action="Error" />
+    <Rule Id="CA1823" Action="Warning" />
+    <Rule Id="CA1901" Action="Error" />
+    <Rule Id="CA2001" Action="Warning" />
+    <Rule Id="CA2118" Action="Error" />
+    <Rule Id="CA2200" Action="Error" />
+    <Rule Id="CA2201" Action="Warning" />
+    <Rule Id="CA2205" Action="Error" />
+    <Rule Id="CA2208" Action="Warning" />
+    <Rule Id="CA2218" Action="Error" />
+    <Rule Id="CA2224" Action="Error" />
+    <Rule Id="CA2243" Action="Error" />
+  </Rules>
+</RuleSet>

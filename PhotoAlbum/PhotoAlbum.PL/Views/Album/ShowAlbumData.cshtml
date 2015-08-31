@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+<div class="row" ng-repeat="photo in album.Photos" ng-if="$index % 3 == 0">
+    <div class="col-md-4 album-container" ng-repeat="photo in album.Photos.slice($index, $index + 3)" ui-sref="Authorized.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
+        <img src="{{photo.URL}}" alt="CoverPhoto of Album" class="album-cover-photo" ui-sref="Authorized.Album.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
+    </div>
+</div>
+
+
+@*<span data-pagination data-total-items="totalNumberOfPictures" data-ng-model="currentPageNumber"
+      data-max-size="numberOfPageButtons" class=" pagination-sm" data-boundary-links="true"
+      data-rotate="false" data-ng-change="pageChanged()" data-items-per-page="albumsPerPage">
+</span>*@
