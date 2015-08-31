@@ -1,6 +1,5 @@
 ﻿(function () {
     angular.module('photoAlbumApp').controller("albumController", function ($scope, $state, $stateParams, albumService, categoryService, userService) {
-        console.log('albumController');
         $scope.totalNumberOfAlbums = 0;
         $scope.currentPageNumber = 1;
         $scope.maxSizeOfPage = 5;

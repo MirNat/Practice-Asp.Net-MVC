@@ -54,8 +54,8 @@
               }
           })
           .state("Authorized.EditAlbum", {
-              url: "/MyProfile/Albums/EditAlbum",
-              templateUrl: "/Album/EditAlbum/",
+              url: "/MyProfile/Albums/EditAlbum/:id",
+              templateUrl: "/Album/EditAlbum",
               controller: "albumController",
               data: {
                   pageTitle: 'Edit Album'
