@@ -18,14 +18,14 @@
       data-rotate="false" data-ng-change="pageChanged()" data-items-per-page="albumsPerPage">
 </span>
 
-<div class="btn-group dropup categories-container">
+<div class="btn-group dropup categories-container" ng-controller="categoryController">
     <button type="button" class="btn btn-default dropdown-toggle dropup-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="caret"></span>
         <span class="sr-only">Toggle Dropdown</span>
     </button>
     <button type="button" class="btn btn-default dropup-button">Filter</button>
     <ul class="dropdown-menu">
-        <li ng-repeat="category in categories| orderBy:'Name'" ng-click="setSelectedCategoryId(category)">
+        <li ng-repeat="category in categories| orderBy:'Name'" ng-click="setSelectedCategory(category)">
             <span ng-bind="category.Name"></span>
         </li>
         <li role="separator" class="divider"></li>

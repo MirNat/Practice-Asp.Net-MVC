@@ -6,10 +6,9 @@
         $scope.maxSizeOfPage = 5;
         $scope.albumsPerPage = 5;
         $scope.numberOfPageButtons = 5;
-        $scope.selectedCategory = {};
-        $scope.categories = [];//categoryService.getAll();
         $scope.albums = [];
         $scope.album = {};
+        $scope.selectedCategoryName = categoryService.getSelectedCategory().Name;
 
         $scope.getSelectedAlbum = function () {        
             albumService.getAlbumById(albumService.getSelectedAlbumId()).success(function (data) {
@@ -18,22 +17,21 @@
             });
         };
 
-
         $scope.setSelectedAlbum = function (id) {
             albumService.setSelectedAlbumId(id)
         };
 
-        this.setOrUpdateAlbums = function(){
+        $scope.setOrUpdateAlbums = function () {
             switch($state.$current.name){
                 case 'Authorized.LatestPublications': {
-                    albumService.getLatestAlbums($scope.selectedCategory.Name).success(function (data) {
+                    albumService.getLatestAlbums($scope.selectedCategoryName).success(function (data) {
                         $scope.albums = data;
                         console.log(JSON.stringify($scope.albums));
                     });
                     break;
                 }
                 case 'Authorized.AllPublications': {
-                    albumService.getAllAlbums($scope.currentPageNumber, $scope.albumsPerPage, $scope.selectedCategory.Name).success(function (data) {
+                    albumService.getAllAlbums($scope.currentPageNumber, $scope.albumsPerPage, $scope.selectedCategoryName).success(function (data) {
                         $scope.albums = data.AlbumsToShow;
                         console.log(JSON.stringify($scope.albums));
                         $scope.totalNumberOfAlbums = data.TotalAlbumsCount;
@@ -62,23 +60,19 @@
             }
         }
         
-        this.setOrUpdateAlbums();
-
-        categoryService.getAll().success(function (data) {
-            $scope.categories = data;
-            console.log(JSON.toString($scope.categories));
-        });
-
-        $scope.setSelectedCategory = function (category) {
-            /*if (category.Name === undefined) {
-                $scope.selectedCategory.Name = "";
-            }*/
-            $scope.selectedCategory = category;
-            this.setOrUpdateAlbums();      
-        };
+        $scope.setOrUpdateAlbums();
 
         $scope.pageChanged = function () {
             this.setOrUpdateAlbums();
         };
+
+        $scope.$watch(function () {
+            return categoryService.getSelectedCategory().Name;
+        }, function (newValue, oldValue) {
+            if (newValue != null) {
+                $scope.selectedCategoryName = newValue;
+                $scope.setOrUpdateAlbums();
+            }
+        }, true);
     });
 })();

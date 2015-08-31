@@ -41,14 +41,7 @@ namespace PhotoAlbum.PL.ApiControllers
         public ScrollableAlbumsViewModel GetAllAlbums(int currentPageNumber, int numberOfRecordsPerPage, string categoryNameForFilter="")
         {
             var numberOfRecordsToSkip = (currentPageNumber - 1) * numberOfRecordsPerPage;
-
-            var filteredByCategoryNameAlbums = albumRepository.GetAllByCategoryName(categoryNameForFilter);/* GetAll().Where(album => categoryNameForFilter == string.Empty ||
-                 album.Categories.Any(category => category.Name == categoryNameForFilter));*/
-
-            var a = albumRepository.GetAll().Where(album => string.IsNullOrEmpty(categoryNameForFilter) ||
-                 album.Categories.Any(category => category.Name == categoryNameForFilter));
-            var b = a.ToList();
-            var c = b;
+            var filteredByCategoryNameAlbums = albumRepository.GetAllByCategoryName(categoryNameForFilter);
             var filteredAlbumsModel = new ScrollableAlbumsViewModel();
             Mapper.CreateMap<Photo, PhotoViewModel>();
             filteredAlbumsModel.AlbumsToShow = filteredByCategoryNameAlbums
@@ -85,8 +78,7 @@ namespace PhotoAlbum.PL.ApiControllers
                 categoryNameForFilter = "";
             }
             const int StartPageForLatestPublications = 1;
-            var a = GetAllAlbums(StartPageForLatestPublications, NumberOfLatestAlbumsToShow, categoryNameForFilter).AlbumsToShow;
-            return a.ToList();
+            return GetAllAlbums(StartPageForLatestPublications, NumberOfLatestAlbumsToShow, categoryNameForFilter).AlbumsToShow.ToList();
         }
 
         /// <summary>

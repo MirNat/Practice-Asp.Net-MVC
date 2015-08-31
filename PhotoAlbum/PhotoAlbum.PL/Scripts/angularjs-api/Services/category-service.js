@@ -4,6 +4,15 @@
         var baseAddress = "/api/Category/";
         var url = "";
         var self = this;
+        var selectedCategory = {};
+
+        self.setSelectedCategory = function (category) {
+            selectedCategory = category;
+        };
+
+        self.getSelectedCategory = function () {
+            return selectedCategory;
+        };
 
         self.getAll = function () {
             url = baseAddress + "GetAllCategories/";
