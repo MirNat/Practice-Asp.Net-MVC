@@ -52,9 +52,9 @@ namespace PhotoAlbum.PL.ApiControllers
         public List<AlbumViewModel> GetUserAlbumsById(string id)
         {
             var user = userRepository.GetById(id);
-            Mapper.CreateMap<Album, AlbumViewModel>();
             Mapper.CreateMap<Category, CategoryViewModel>();
             Mapper.CreateMap<Photo, PhotoViewModel>();
+            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(albumViewModel => albumViewModel.CoverPhoto, configurationExpression => configurationExpression.MapFrom(album => album.Photos.First()));
             if (user != null)
             {
                 return user.Albums.Select(album => Mapper.Map<AlbumViewModel>(album)).ToList();
@@ -87,15 +87,14 @@ namespace PhotoAlbum.PL.ApiControllers
         public List<AlbumViewModel> GetCurrentUserAlbums()
         {
             var user = userRepository.GetById(User.Identity.GetUserId());
-            Mapper.CreateMap<Album, AlbumViewModel>();
             Mapper.CreateMap<Category, CategoryViewModel>();
+            Mapper.CreateMap<Photo, PhotoViewModel>();
+            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(albumViewModel => albumViewModel.CoverPhoto, configurationExpression => configurationExpression.MapFrom(album => album.Photos.First()));
             if (user != null)
             {
                 return user.Albums.Select(album => Mapper.Map<AlbumViewModel>(album)).ToList();
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
-
-       
     }
 }
