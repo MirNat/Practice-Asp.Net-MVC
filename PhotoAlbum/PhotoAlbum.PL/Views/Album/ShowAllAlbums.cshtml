@@ -5,9 +5,14 @@
     <div class="col-md-4 album-container" ng-repeat="album in albums.slice($index, $index + 3)" @*ui-sref="Authorized.Album.Photos({id: album.Id})" ng-click="setSelectedAlbum(album.Id)"*@>
         <img src="{{album.CoverPhoto.URL}}" alt="CoverPhoto of Album" class="album-cover-photo">
         <div class="additional-album-info-on-hover">
-            Album: <a href="#" ui-sref="Authorized.Album.Photos({ id:album.Id })" ng-click="setSelectedAlbum(album.Id)" ng-bind="album.Name">{{album.Name}}</a><br />
-            Author: <a href="#" ui-sref="Authorized.UserProfile.Albums({ id:album.AuthorId})" ng-click="setSelectedUser(album.AuthorId)" ng-bind="album.AuthorUserName">{{album.AuthorUserName}}</a><br />
-            Categories: <label ng-repeat="category in album.Categories" class="album-list-category">{{category.Name}}</label>
+            <label class="additional-album-info-label">Album: </label>
+            <a href="#" ui-sref="Authorized.Album.Photos({ id:album.Id })" ng-click="setSelectedAlbum(album.Id)" ng-bind="album.Name">{{album.Name}}</a><br />
+            <label class="additional-album-info-label">Author: </label>
+            <a href="#" ui-sref="Authorized.UserProfile.Albums({ id:album.AuthorId})" ng-click="setSelectedUser(album.AuthorId)" ng-bind="album.AuthorUserName">{{album.AuthorUserName}}</a><br />
+            <label class="additional-album-info-label">Categories: </label>
+            <label ng-repeat="category in album.Categories" class="album-list-category">{{category.Name}}</label>
+            <br>
+            <a href="#" ui-sref="Authorized.EditAlbum({ id:album.Id })" ng-visible=" isCurrentUserOwnerOfProfile">Edit Album</a>
         </div>
     </div>
 </div>

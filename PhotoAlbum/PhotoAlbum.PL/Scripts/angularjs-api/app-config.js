@@ -37,14 +37,30 @@
                   pageTitle: 'My Profile'
               }
           })
-            .state("Authorized.MyProfile.Albums", {
+          .state("Authorized.MyProfile.Albums", {
                 url: "/Albums",
                 templateUrl: "/Album/GetUserAlbums/",
                 controller: "albumController",
                 data: {
-                    pageTitle: 'My Profile'
+                    pageTitle: 'My Albums'
                 }
-            })
+          })
+          .state("Authorized.AddAlbum", {
+              url: "/MyProfile/Albums/AddAlbum",
+              templateUrl: "/Album/AddAlbum/",
+              controller: "albumController",
+              data: {
+                  pageTitle: 'Add Album'
+              }
+          })
+          .state("Authorized.EditAlbum", {
+              url: "/MyProfile/Albums/EditAlbum",
+              templateUrl: "/Album/EditAlbum/",
+              controller: "albumController",
+              data: {
+                  pageTitle: 'Edit Album'
+              }
+          })
           .state("Authorized.UserProfile", {
               abstract: true,
               url: "/UserProfile/:id",
@@ -59,7 +75,7 @@
               templateUrl: "/Album/GetUserAlbums/",
               controller: "albumController",
               data: {
-                  pageTitle: 'My Profile'
+                  pageTitle: 'User albums'
               }
           })
           .state("Authorized.Album", {
@@ -76,7 +92,7 @@
               templateUrl: "/Album/GetAlbumPhotosById/",
               controller: "albumController",
               data: {
-                  pageTitle: 'Album'
+                  pageTitle: 'Album Photos'
               }
           })
           .state("Authorized.Album.Photo", {

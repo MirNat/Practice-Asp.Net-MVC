@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+<h4 class="add-edit-album-title">
+    <span ng-hide="isEditMode">Add </span>
+    <span ng-hide="!isEditMode">Edit </span>
+    Album
+</h4>
+<div class="row">
+    <label class="parameter-name col-md-1 control-label">Name</label>
+    <div class="col-md-2">
+        <input type="text" class="form-control" placeholder="" required autofocus="" tabindex="1" ng-model="album.Name" />
+    </div>
+</div>
+<div class="row">
+    <label class="parameter-name col-md-1 control-label">Categories</label>
+    <div class="col-md-2">
+        <span ng-repeat="category in categories| orderBy:'Name'">
+            <input type="checkbox" checklist-model="album.Categories" checklist-value="category" tabindex="2" />
+            <span>{{category.Name}}</span>
+            <br>
+        </span>
+    </div>
+</div>
+

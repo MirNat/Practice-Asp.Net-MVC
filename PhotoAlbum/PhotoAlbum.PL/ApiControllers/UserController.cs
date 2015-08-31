@@ -26,6 +26,13 @@ namespace PhotoAlbum.PL.ApiControllers
             this.userRepository = userRepository;
         }
 
+        [HttpGet]
+        [Route("IsCurrentUserOwnerOfProfile/{ownerOfProfileId}")]
+        public bool IsUserOwnerOfProfile(string ownerOfProfileId)
+        {
+            return User.Identity.GetUserId() == ownerOfProfileId;
+        }
+
         /// <summary>
         /// Return UserViewModel object by user identifier
         /// </summary>

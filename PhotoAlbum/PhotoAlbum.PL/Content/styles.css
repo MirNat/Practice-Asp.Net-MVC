@@ -151,6 +151,10 @@ a.list-group-item, button.list-group-item {
     color: #5EFF00;
 }
 
+.additional-album-info-label {
+ /* font-family: 'Andantino script', arial;*/
+}
+
 .categories-container {
     position: fixed;
     bottom: 7vh;

@@ -1,0 +1,12 @@
+/*****************************
+ All rights reserved.
+ AllFont.ru (c) 2011-2015
+ *****************************/
+@font-face {
+    font-family: 'Andantino script';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Andantino script'), local('Andantinoscript-Regular'),
+        url(http://allfont.ru/cache/fonts/andantino-script_5cd3e3d54a5926ef75b2af691fee655e.woff) format('woff'),
+        url(http://allfont.ru/cache/fonts/andantino-script_5cd3e3d54a5926ef75b2af691fee655e.ttf) format('truetype');
+}

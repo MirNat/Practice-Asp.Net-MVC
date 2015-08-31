@@ -3,6 +3,8 @@
     angular.module('photoAlbumApp').controller("userController", function ($scope, $state, $stateParams, userService) {
         console.log('userController');
         $scope.user = {};
+        $scope.isCurrentUserOwnerOfProfile = null;
+
         this.setOrUpdateUser = function () {
             switch ($state.$current.name) {
                 case 'Authorized.MyProfile.Albums': {
@@ -23,6 +25,9 @@
                 }
                 default: { }
             }
+            userService.isCurrentUserOwnerOfProfile($scope.user.Id).success(function (data) {
+                $scope.isCurrentUserOwnerOfProfile = data;
+            });
         }
 
         this.setOrUpdateUser();

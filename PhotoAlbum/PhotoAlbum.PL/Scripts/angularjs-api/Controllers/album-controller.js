@@ -9,11 +9,13 @@
         $scope.albums = [];
         $scope.album = {};
         $scope.selectedCategoryName = categoryService.getSelectedCategory().Name;
+        $scope.categories = [];
+        $scope.isEditMode = null;
+        $scope.isCurrentUserOwnerOfProfile = null;
 
         $scope.getSelectedAlbum = function () {        
             albumService.getAlbumById(albumService.getSelectedAlbumId()).success(function (data) {
                 $scope.album = data;
-                console.log(JSON.stringify($scope.album));
             });
         };
 
@@ -26,35 +28,52 @@
                 case 'Authorized.LatestPublications': {
                     albumService.getLatestAlbums($scope.selectedCategoryName).success(function (data) {
                         $scope.albums = data;
-                        console.log(JSON.stringify($scope.albums));
                     });
+                    $scope.isCurrentUserOwnerOfProfile = false;
                     break;
                 }
                 case 'Authorized.AllPublications': {
                     albumService.getAllAlbums($scope.currentPageNumber, $scope.albumsPerPage, $scope.selectedCategoryName).success(function (data) {
                         $scope.albums = data.AlbumsToShow;
-                        console.log(JSON.stringify($scope.albums));
                         $scope.totalNumberOfAlbums = data.TotalAlbumsCount;
                     });
+                    $scope.isCurrentUserOwnerOfProfile = false;
                     break;
                 }
                 case 'Authorized.UserProfile.Albums': {
                     userService.getUserAlbumsById($stateParams.id).success(function (data) {
                         $scope.albums = data;
-                        console.log(JSON.stringify($scope.albums));
+                        userService.isCurrentUserOwnerOfProfile($stateParams.id).success(function (data) {
+                            $scope.isCurrentUserOwnerOfProfile = data;
+                        });
                     });
                     break;
                 }
                 case 'Authorized.MyProfile.Albums': {
                     userService.getCurrentUserAlbums().success(function (data) {
                         $scope.albums = data;
-                        console.log($scope.user.Name);
-                        console.log(JSON.stringify($scope.albums));
+                        $scope.isCurrentUserOwnerOfProfile = true;
                     });
                     break;
                 }
                 case 'Authorized.Album.Photos': {
-                        $scope.getSelectedAlbum();                
+                    $scope.getSelectedAlbum();
+                    $scope.isCurrentUserOwnerOfProfile = false;
+                }
+                case 'Authorized.AddAlbum': {
+                    $scope.isEditMode = false;
+                    categoryService.getAll().success(function (data) {
+                        $scope.categories = data;
+                    });
+                }
+                case 'Authorized.EditAlbum': {
+                    $scope.isEditMode = true;
+                    albumService.getAlbumById($stateParams.id).success(function (data) {
+                        $scope.album = data;
+                    });
+                    categoryService.getAll().success(function (data) {
+                        $scope.categories = data;
+                    });
                 }
                 default: {}      
             }

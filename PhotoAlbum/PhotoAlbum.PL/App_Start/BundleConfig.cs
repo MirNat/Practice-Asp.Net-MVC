@@ -25,6 +25,7 @@ namespace PhotoAlbum.PL
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                       "~/Scripts/angularjs/angular.min.js",
+                      "~/Scripts/angularjs/checklist-model.js",
                       //"~/Scripts/angularjs/angular-ui/ui-bootstrap.min.js",
                       //"~/Scripts/angularjs/angular-ui/ui-bootstrap-tpls.min.js",
                       "~/Scripts/angularjs/angular-ui-router.js"/*,
@@ -64,6 +65,7 @@ namespace PhotoAlbum.PL
             bundles.Add(new StyleBundle("~/Content/custom-css").Include(
                      "~/Content/darkly.bootstrap.min.css",
                      "~/Content/esenin-script-two.css",
+                     "~/Content/andantino-script.css",
                      "~/Content/styles.css"
                      ));
         }

@@ -6,5 +6,6 @@
 <label class="parameter-name">Surname: </label><label ng-bind="user.Surname"></label>
 <label class ="parameter-name">E-mail: </label><label ng-bind="user.Email"></label>
 <label class="parameter-name">Phone Number: </label><label ng-bind="user.PhoneNumber"></label>
+<a href="#" ui-sref="Authorized.AddAlbum" ng-visible=" isCurrentUserOwnerOfProfile" class="parameter-name">Add Album</a>
 <ui-view>
 

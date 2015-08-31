@@ -5,8 +5,13 @@
         var url = "";
         var self = this;
 
+        self.isCurrentUserOwnerOfProfile = function (ownerOfProfileId) {
+            url = baseAddress + "IsCurrentUserOwnerOfProfile/" + ownerOfProfileId;
+            return $http.get(url);
+        }
+
         self.getUserById = function (id) {
-            url = baseAddress + "GetUserById/"+id;
+            url = baseAddress + "GetUserById/" + id;
             return $http.get(url);
         };
 
@@ -16,7 +21,7 @@
         };
 
         self.getUserAlbumsById = function (id) {
-            url = baseAddress + "GetUserAlbumsById/"+id;
+            url = baseAddress + "GetUserAlbumsById/" + id;
             return $http.get(url);
         };
 

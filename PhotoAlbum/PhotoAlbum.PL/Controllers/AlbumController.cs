@@ -28,10 +28,20 @@ namespace PhotoAlbum.PL.Controllers
         {
             return View("AlbumInfo");
         }
+
         public ActionResult GetAlbumPhotosById()
         {
             return View("ShowAlbumData");
         }
 
+        public ActionResult AddAlbum()
+        {
+            return View("AddEditAlbum");
+        }
+
+        public ActionResult EditAlbum()
+        {
+            return View("AddEditAlbum");
+        }
     }
 }
