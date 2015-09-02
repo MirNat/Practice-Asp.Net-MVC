@@ -12,7 +12,8 @@
             <label class="additional-album-info-label">Categories: </label>
             <label ng-repeat="category in album.Categories" class="album-list-category">{{category.Name}}</label>
             <br>
-            <a href="#" ui-sref="Authorized.EditAlbum({ id:album.Id })" ng-visible=" isCurrentUserOwnerOfProfile">Edit Album</a>
+            <a href="#" ui-sref="Authorized.EditAlbum({ id:album.Id })" ng-visible=" isCurrentUserOwnerOfProfile" class="href-album-action">Edit Album</a>
+            <a href="#" ng-click="deleteAlbum(album.Id)" ng-visible=" isCurrentUserOwnerOfProfile" class="href-album-action">Delete Album</a>
         </div>
     </div>
 </div>
@@ -31,7 +32,7 @@
     <button type="button" class="btn btn-default dropup-button">Filter</button>
     <ul class="dropdown-menu">
         <li ng-repeat="category in categories| orderBy:'Name'" ng-click="setSelectedCategory(category)">
-            <span ng-bind="category.Name"></span>
+            <a href="#" ng-bind="category.Name"></a>
         </li>
         <li role="separator" class="divider"></li>
         <li><a href="#">View All</a></li>

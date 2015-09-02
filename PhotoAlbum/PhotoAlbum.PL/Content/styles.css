@@ -11,29 +11,12 @@ html {
 
 body {
     position: relative;
-    /*background:url('http://cdn.sixrevisions.com/0431-01_responsive_background_image_demo/images/background-photo.jpg') no-repeat 50% 0;
-    background-size:contain;
-    height:100%;
-    min-height:100%;*/
     background-image: url('http://cdn.sixrevisions.com/0431-01_responsive_background_image_demo/images/background-photo.jpg');
-
     background-position: center center;
-
-    /* Background image doesn't tile */
     background-repeat: no-repeat;
-
-    /* Background image is fixed in the viewport so that it doesn't move when
-       the content's height is greater than the image's height */
     background-attachment: fixed;
-
-    /* This is what makes the background image rescale based
-       on the container's size */
     background-size: cover;
-
-    /* Set a background color that will be displayed
-       while the background image is loading */
     background-color: #161616;
-
     color: #4CBBBD;
 }
 
@@ -42,8 +25,6 @@ header {
 }
 
 footer {
-    /*margin: auto 10% 5%;
-    position: absolute;*/
     margin: 0 0 1vh 1vh;
     position: fixed;
     bottom: 0;
@@ -51,7 +32,6 @@ footer {
 
 .control-panel {
     height: 100vh;
-    /*background-color: rgba(0, 0, 0, 0.7);*/
     position: relative font-size : 112.5 %;
 }
 
@@ -77,9 +57,14 @@ footer {
     border-color: #134c51 #252524;
 }
 
+.list-group-item {
+    background-color: rgba(0,0,0,0.9);
+    border: 2px solid rgb(70,69,69);
+}
+
 a.list-group-item, button.list-group-item {
     font-size: 110%;
-    color: #4CBBBD;
+    color: rgb(76,187,189);
 }
 
 .login-form {
@@ -147,10 +132,6 @@ a.list-group-item, button.list-group-item {
     color: black;
 }
 
-.additional-album-info-on-hover a {
-    color: #5EFF00;
-}
-
 .additional-album-info-label {
  /* font-family: 'Andantino script', arial;*/
 }
@@ -167,10 +148,16 @@ a.list-group-item, button.list-group-item {
 
 .dropup-arrow {
     background-color: rgba(0, 0, 0, 0.9);
+    color: rgb(255,250,189);
 }
 
 .dropup-button {
     background-color: rgba(0, 0, 0, 0.6);
+    color: rgb(255,250,189);
+}
+
+.dropdown-menu > li > a {
+color: rgb(255,250,189);
 }
 
 .main-navigation-panel{
@@ -179,7 +166,7 @@ a.list-group-item, button.list-group-item {
 
 .album-list-category{
     padding-left: 7px;
-    color: lemonchiffon;
+    color: rgb(255,250,189);
 }
 
 .album-list-category:first-of-type{
@@ -190,7 +177,7 @@ a.list-group-item, button.list-group-item {
     padding-left: 20px;
     padding-right: 7px;
     font-size: 110%;
-    color: lemonchiffon;
+    color: rgb(255,250,189);
 }
 
 .album-list-category:first-of-type{
@@ -200,4 +187,9 @@ a.list-group-item, button.list-group-item {
 .about-content{
     font-size: 120%;
     padding-top: 10px;
+}
+
+.href-album-action {
+    padding-left: 7px;
+    color: fuchsia;
 }

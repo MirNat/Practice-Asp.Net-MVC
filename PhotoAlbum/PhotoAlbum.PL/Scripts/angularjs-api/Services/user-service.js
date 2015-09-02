@@ -4,6 +4,7 @@
         var baseAddress = "/api/User/";
         var url = "";
         var self = this;
+        
 
         self.isCurrentUserOwnerOfProfile = function (ownerOfProfileId) {
             url = baseAddress + "IsCurrentUserOwnerOfProfile/" + ownerOfProfileId;

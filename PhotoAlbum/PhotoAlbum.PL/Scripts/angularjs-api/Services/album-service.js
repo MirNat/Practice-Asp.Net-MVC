@@ -4,15 +4,6 @@
         var baseAddress = "/api/Album/";
         var url = "";
         var self = this;
-        var selectedAlbumId = null;
-
-        self.setSelectedAlbumId = function (id) {
-            selectedAlbumId = id;
-        };
-
-        self.getSelectedAlbumId = function () {
-            return selectedAlbumId;
-        };
 
         self.getAllAlbums = function (currentPageNumber, numberOfRecordsPerPage, categoryNameForFilter) {
             if (categoryNameForFilter == undefined) {
@@ -22,11 +13,6 @@
                    "&numberOfRecordsPerPage="+ numberOfRecordsPerPage +
                    "&categoryNameForFilter=" + categoryNameForFilter;
             return $http.get(url);
-            /* if (categoryNameForFilter == undefined) {
-                categoryNameForFilter = "";
-            }
-            url = baseAddress + "GetAllAlbums/" + currentPageNumber + "/"+ numberOfRecordsPerPage + "/" + categoryNameForFilter;
-            return $http.get(url);*/
         };
 
         self.getLatestAlbums = function (categoryNameForFilter) {
