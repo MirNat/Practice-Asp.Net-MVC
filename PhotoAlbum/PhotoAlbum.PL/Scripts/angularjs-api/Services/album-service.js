@@ -16,7 +16,7 @@
         };
 
         self.getLatestAlbums = function (categoryNameForFilter) {
-            if (categoryNameForFilter == undefined) {
+            if (categoryNameForFilter == undefined || categoryNameForFilter == "") {
                 categoryNameForFilter = "View All";
             }
             url = baseAddress + "GetLatestAlbums/" + categoryNameForFilter;

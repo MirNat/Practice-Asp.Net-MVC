@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace PhotoAlbum.PL.ViewModels
+namespace PhotoAlbum.PL.Models
 {
-    public class UserViewModel
+    public class User
     {
         public string Id { get; set; }
 

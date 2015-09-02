@@ -9,8 +9,8 @@
             $scope.categories = data;
         });
 
-        $scope.setSelectedCategory = function (category) {
-            categoryService.setSelectedCategory(category);
+        $scope.setSelectedCategoryName = function (categoryName) {
+            categoryService.setSelectedCategoryName(categoryName);
         };
     });
 })();

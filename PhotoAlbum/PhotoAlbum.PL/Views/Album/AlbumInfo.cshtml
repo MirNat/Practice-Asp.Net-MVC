@@ -1,9 +1,11 @@
 ﻿@{
     Layout = null;
 }
-Album: <a href="#/Album/{{album.Id}}/Photos" ng-bind="album.Name"></a>
-Author: <a href="#" ui-sref="Authorized.UserProfile.Albums({ id:album.AuthorId})" ng-bind="album.AuthorUserName"></a>@*/UserProfile/{{album.AuthorId}}/Albums/*@
-<label ng-repeat="category in album.Categories" ng-bind="category.Name" /></label>
-<label>Creation Date: </label>{{album.CreationDate| date:'medium'}}</label>
-<label>Modification Date: </label><label>{{album.ModificationDate| date:'medium'}}</label>
-<div ui-view></div>
+<label class="parameter-name">Album: </label><label ng-bind="album.Name"></label>
+<label class="parameter-name">Author: </label><a href="#" ui-sref="Authorized.UserProfile.Albums({ id:album.AuthorId})" ng-bind="album.AuthorUserName"></a>
+<label class="parameter-name">Creation Date: </label>{{album.CreationDate| date:'short'}}
+<label class="parameter-name">Modification Date: </label>{{album.ModificationDate| date:'short'}}
+<label class="parameter-name">Categories: </label><label ng-repeat="category in album.Categories" class="album-info-list-category">{{category.Name}}</label>
+<a href="#" ui-sref="Authorized.EditAlbum({ id:album.Id })" ng-visible=" isCurrentUserOwnerOfProfile" class="href-album-action">Edit Album</a>
+<a href="#" ng-click="deleteAlbum(album.Id)" ng-visible=" isCurrentUserOwnerOfProfile" class="href-album-action">Delete Album</a>
+<ui-view>

@@ -1,5 +1,5 @@
 ﻿@{
     Layout = null;
 }
-Name: {{photo.Name}}
-CreationDate: {{photo.CreationDate}}
+<a href="#" ng-click="deletePhoto(photo.Id)" ng-visible=" isCurrentUserOwnerOfProfile" class="href-album-action">Delete Photo</a>
+<img src="{{photo.URL}}" alt="Full Size Photo" class="album-cover-photo">

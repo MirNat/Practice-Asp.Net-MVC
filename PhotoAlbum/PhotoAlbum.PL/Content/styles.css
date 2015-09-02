@@ -173,15 +173,23 @@ color: rgb(255,250,189);
     padding-left: 0;
 }
 
+.album-info-list-category:first-of-type{
+    padding-left: 7px;
+}
+
+.album-info-list-category:last-of-type{
+    padding-right: 20px;
+}
+
+.album-info-list-category{
+    padding-right: 7px;
+}
+
 .parameter-name {
     padding-left: 20px;
     padding-right: 7px;
     font-size: 110%;
     color: rgb(255,250,189);
-}
-
-.album-list-category:first-of-type{
-    padding-left: 0;
 }
 
 .about-content{
@@ -190,6 +198,6 @@ color: rgb(255,250,189);
 }
 
 .href-album-action {
-    padding-left: 7px;
-    color: fuchsia;
+    padding-right: 7px;
+    color: #FF9DFF;
 }

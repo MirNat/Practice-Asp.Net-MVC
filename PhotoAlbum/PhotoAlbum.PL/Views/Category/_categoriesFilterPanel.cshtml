@@ -5,8 +5,8 @@
     </button>
     <button type="button" class="btn btn-default">Filter</button>
     <ul class="dropdown-menu">
-        <li ng-repeat="category in categories| orderBy:'name'" ng-click="setSelectedCategory(category)">
-            <span ng-bind="category.name"></span>
+        <li ng-repeat="category in categories| orderBy:'Name'" ng-click="setSelectedCategoryName(category.Name)">
+            <span ng-bind="category.Name"></span>
         </li>
         <li role="separator" class="divider"></li>
         <li><a href="#">View All</a></li>

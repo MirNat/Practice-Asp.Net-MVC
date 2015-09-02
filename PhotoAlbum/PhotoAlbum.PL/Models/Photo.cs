@@ -1,7 +1,7 @@
 ﻿
-namespace PhotoAlbum.PL.ViewModels
+namespace PhotoAlbum.PL.Models
 {
-    public class PhotoViewModel
+    public class Photo
     {
         public long Id { get; set; }
         public string URL { get; set; }

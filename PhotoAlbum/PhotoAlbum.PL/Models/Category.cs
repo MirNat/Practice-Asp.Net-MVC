@@ -1,7 +1,7 @@
 ﻿
-namespace PhotoAlbum.PL.ViewModels
+namespace PhotoAlbum.PL.Models
 {
-    public class CategoryViewModel
+    public class Category
     {
         public int Id { get; set; }
 

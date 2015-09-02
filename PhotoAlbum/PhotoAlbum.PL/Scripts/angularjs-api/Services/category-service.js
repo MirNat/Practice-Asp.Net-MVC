@@ -4,14 +4,14 @@
         var baseAddress = "/api/Category/";
         var url = "";
         var self = this;
-        var selectedCategory = {};
+        var selectedCategoryName = "";
 
-        self.setSelectedCategory = function (category) {
-            selectedCategory = category;
+        self.setSelectedCategoryName = function (categoryName) {
+            selectedCategoryName = categoryName;
         };
 
-        self.getSelectedCategory = function () {
-            return selectedCategory;
+        self.getSelectedCategoryName = function () {
+            return selectedCategoryName;
         };
 
         self.getAll = function () {

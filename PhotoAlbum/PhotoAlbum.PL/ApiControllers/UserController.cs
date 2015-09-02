@@ -5,7 +5,7 @@ using System.Web.Http;
 using AutoMapper;
 using PhotoAlbum.DAL.Repository.Interfaces;
 using PhotoAlbum.Entities.Entities;
-using PhotoAlbum.PL.ViewModels;
+using businessModels = PhotoAlbum.PL.Models;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 
@@ -39,16 +39,12 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>UserViewModel object</returns>
         [HttpGet]
         [Route("GetUserById/{id}")]
-        public UserViewModel GetUserById(string id)
+        public businessModels.User GetUserById(string id)
         {
             var user = userRepository.GetById(id);
-            Mapper.CreateMap<ApplicationUser, UserViewModel>();
-            Mapper.CreateMap<Album, AlbumViewModel>();
-            Mapper.CreateMap<Category, CategoryViewModel>();
-            Mapper.CreateMap<Photo, PhotoViewModel>();
             if (user != null)
             {
-                return Mapper.Map<UserViewModel>(user);
+                return Mapper.Map<businessModels.User>(user);
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
@@ -56,15 +52,12 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>List of AlbumViewModel objects</returns>
         [HttpGet]
         [Route("GetUserAlbumsById/{id}")]
-        public List<AlbumViewModel> GetUserAlbumsById(string id)
+        public List<businessModels.Album> GetUserAlbumsById(string id)
         {
             var user = userRepository.GetById(id);
-            Mapper.CreateMap<Category, CategoryViewModel>();
-            Mapper.CreateMap<Photo, PhotoViewModel>();
-            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(albumViewModel => albumViewModel.CoverPhoto, configurationExpression => configurationExpression.MapFrom(album => album.Photos.First()));
             if (user != null)
             {
-                return user.Albums.Select(album => Mapper.Map<AlbumViewModel>(album)).ToList();
+                return user.Albums.Select(album => Mapper.Map<businessModels.Album>(album)).ToList();
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
@@ -75,15 +68,12 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>UserViewModel object</returns>
         [HttpGet]
         [Route("GetCurrentUser")]
-        public UserViewModel GetCurrentUser()
+        public businessModels.User GetCurrentUser()
         {
             var user = userRepository.GetById(User.Identity.GetUserId());
-            Mapper.CreateMap<ApplicationUser, UserViewModel>();
-            //Mapper.CreateMap<Album, AlbumViewModel>();
-            //Mapper.CreateMap<Category, CategoryViewModel>();
             if (user != null)
             {
-                return Mapper.Map<UserViewModel>(user);
+                return Mapper.Map<businessModels.User>(user);
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
@@ -91,15 +81,12 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>List of AlbumViewModel objects</returns>
         [HttpGet]
         [Route("GetCurrentUserAlbums")]
-        public List<AlbumViewModel> GetCurrentUserAlbums()
+        public List<businessModels.Album> GetCurrentUserAlbums()
         {
             var user = userRepository.GetById(User.Identity.GetUserId());
-            Mapper.CreateMap<Category, CategoryViewModel>();
-            Mapper.CreateMap<Photo, PhotoViewModel>();
-            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(albumViewModel => albumViewModel.CoverPhoto, configurationExpression => configurationExpression.MapFrom(album => album.Photos.First()));
             if (user != null)
             {
-                return user.Albums.Select(album => Mapper.Map<AlbumViewModel>(album)).ToList();
+                return user.Albums.Select(album => Mapper.Map<businessModels.Album>(album)).ToList();
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }

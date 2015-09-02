@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity;
 using AutoMapper;
 using PhotoAlbum.DAL.Repository.Interfaces;
 using PhotoAlbum.Entities.Entities;
-using PhotoAlbum.PL.ViewModels;
+using businessModels = PhotoAlbum.PL.Models;
 
 namespace PhotoAlbum.PL.ApiControllers
 {
@@ -38,26 +38,18 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>Album object</returns>
         [HttpGet]
         //[Route("GetLatestAlbums/{currentPageNumber}/{numberOfRecordsPerPage}/{categoryNameForFilter}")]
-        public ScrollableAlbumsViewModel GetAllAlbums(int currentPageNumber, int numberOfRecordsPerPage, string categoryNameForFilter="")
+        public businessModels.ScrollableAlbums GetAllAlbums(int currentPageNumber, int numberOfRecordsPerPage, string categoryNameForFilter = "")
         {
             var numberOfRecordsToSkip = (currentPageNumber - 1) * numberOfRecordsPerPage;
             var filteredByCategoryNameAlbums = albumRepository.GetAllByCategoryName(categoryNameForFilter);
-            var filteredAlbumsModel = new ScrollableAlbumsViewModel();
-            Mapper.CreateMap<Photo, PhotoViewModel>();
+            var filteredAlbumsModel = new businessModels.ScrollableAlbums();
+            
             filteredAlbumsModel.AlbumsToShow = filteredByCategoryNameAlbums
-                .OrderBy(orderingAlbum => orderingAlbum.ModificationDate)
-                .Skip(numberOfRecordsToSkip)
-                .Take(numberOfRecordsPerPage)
-                .ToList()
-                .Select(filteredAlbum => new AlbumViewModel
-                {
-                    Id = filteredAlbum.Id,
-                    Name = filteredAlbum.Name,
-                    AuthorId = filteredAlbum.AuthorId,
-                    AuthorUserName = filteredAlbum.Author.UserName,
-                    Categories = filteredAlbum.Categories.Select(category => new CategoryViewModel { Id = category.Id, Name = category.Name }).ToList(),
-                    CoverPhoto = Mapper.Map<PhotoViewModel>(filteredAlbum.Photos.First())
-                }).ToList();
+            .OrderBy(orderingAlbum => orderingAlbum.ModificationDate)
+            .Skip(numberOfRecordsToSkip)
+            .Take(numberOfRecordsPerPage)
+            .ToList()
+            .Select(album => Mapper.Map<businessModels.Album>(album)).ToList();
 
             filteredAlbumsModel.TotalAlbumsCount = filteredByCategoryNameAlbums.Count();
 
@@ -72,7 +64,7 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>Album object</returns>
         [HttpGet]
         [Route("GetLatestAlbums/{categoryNameForFilter}")]
-        public List<AlbumViewModel> GetLatestAlbums(string categoryNameForFilter)
+        public List<businessModels.Album> GetLatestAlbums(string categoryNameForFilter)
         {
             if(categoryNameForFilter == "View All"){
                 categoryNameForFilter = "";
@@ -88,15 +80,11 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>Album object</returns>
         [HttpGet]
         [Route("GetAlbumById/{id}")]
-        public FullAlbumViewModel GetAlbumById(int id)
+        public businessModels.FullAlbum GetAlbumById(int id)
         {
             if (albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), id))
             {
-                Mapper.CreateMap<Album, FullAlbumViewModel>();
-                Mapper.CreateMap<Category, CategoryViewModel>();
-                var a = Mapper.Map<FullAlbumViewModel>(albumRepository.GetById(id));
-                var b = a;
-                return a;
+                return Mapper.Map<businessModels.FullAlbum>(albumRepository.GetById(id)); ;
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }

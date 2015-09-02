@@ -5,7 +5,7 @@ using System.Web.Http;
 using AutoMapper;
 using PhotoAlbum.DAL.Repository.Interfaces;
 using PhotoAlbum.Entities.Entities;
-using PhotoAlbum.PL.ViewModels;
+using businessModels = PhotoAlbum.PL.Models;
 using System.Collections.Generic;
 
 namespace PhotoAlbum.PL.ApiControllers
@@ -31,9 +31,9 @@ namespace PhotoAlbum.PL.ApiControllers
          /// <returns>collection of CategoryViewModel objects</returns>
         [HttpGet]
         [Route("GetAllCategories")]
-        public IEnumerable<CategoryViewModel> GetAllCategories()
+         public List<businessModels.Category> GetAllCategories()
         {
-            return categoryRepository.GetAll().Select(c => new CategoryViewModel { Id = c.Id, Name = c.Name });
+            return categoryRepository.GetAll().ToList().Select(category => Mapper.Map<businessModels.Category>(category)).ToList();
         }
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <returns>CategoryViewModel object</returns>
         [HttpGet]
         [Route("GetCategoryById/{id}")]
-        public CategoryViewModel GetCategoryById(int id)
+        public businessModels.Category GetCategoryById(int id)
         {
             var category = categoryRepository.GetById(id);
             if(category != null)
             {
-                return Mapper.Map<CategoryViewModel>(category);
+                return Mapper.Map<businessModels.Category>(category);
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }

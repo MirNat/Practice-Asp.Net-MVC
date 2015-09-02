@@ -31,10 +31,10 @@
     </button>
     <button type="button" class="btn btn-default dropup-button">Filter</button>
     <ul class="dropdown-menu">
-        <li ng-repeat="category in categories| orderBy:'Name'" ng-click="setSelectedCategory(category)">
+        <li ng-repeat="category in categories| orderBy:'Name'" ng-click="setSelectedCategoryName(category.Name)">
             <a href="#" ng-bind="category.Name"></a>
         </li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">View All</a></li>
+        <li><a href="#" ng-click="setSelectedCategoryName('View all')">View All</a></li>
     </ul>
 </div>

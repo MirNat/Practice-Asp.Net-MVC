@@ -6,8 +6,9 @@
         $scope.albumsPerPage = 5;
         $scope.numberOfPageButtons = 5;
         $scope.albums = [];
+        $scope.currentUserAlbums = [];
         $scope.album = {};
-        $scope.selectedCategoryName = categoryService.getSelectedCategory().Name;
+        $scope.selectedCategoryName = categoryService.getSelectedCategoryName();
         $scope.categories = [];
         $scope.isEditMode = null;
         $scope.isCurrentUserOwnerOfProfile = null;
@@ -82,7 +83,7 @@
         };
 
         $scope.$watch(function () {
-            return categoryService.getSelectedCategory().Name;
+            return categoryService.getSelectedCategoryName();
         }, function (newValue, oldValue) {
             if (newValue != null) {
                 $scope.selectedCategoryName = newValue;
