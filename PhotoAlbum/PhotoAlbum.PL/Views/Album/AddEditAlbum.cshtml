@@ -7,23 +7,28 @@
     Album
 </h4>
 <form name="addEditAlbum">
-    <input type="submit" ng-hide="!isEditMode" value="Create" ng-click="addAlbum(addEditAlbum)" class="btn btn-primary">
-    <input type="submit" ng-hide="isEditMode" value="Save" ng-click="updateAlbum(addEditAlbum)" class="btn btn-primary">
-
     <div class="row">
-        <label class="parameter-name col-md-1 control-label">Name</label>
-        <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="" required autofocus="" tabindex="1" ng-model="album.Name" />
+        <div class="col-md-7">
+            <div class="row">
+                <label class="parameter-name col-md-1 control-label">Name</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="" required autofocus="" tabindex="1" ng-model="album.Name" />
+                </div>
+            </div>
+            <div class="row add-edit-album-categories-container">
+                <label class="parameter-name col-md-1 control-label add-edit-album-category-label">Categories</label>
+                <div class="col-md-2">
+                    <span ng-repeat="category in categories| orderBy:'Name'">
+                        <input type="checkbox" checklist-model="album.Categories" checklist-value="category" tabindex="2" />
+                        <span>{{category.Name}}</span>
+                        <br>
+                    </span>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <label class="parameter-name col-md-1 control-label">Categories</label>
-        <div class="col-md-2">
-            <span ng-repeat="category in categories| orderBy:'Name'">
-                <input type="checkbox" checklist-model="album.Categories" checklist-value="category" tabindex="2" />
-                <span>{{category.Name}}</span>
-                <br>
-            </span>
+        <div class="col-md-5">
+            <input type="submit" ng-hide="!isEditMode" value="Save" ng-click="updateAlbum(addEditAlbum)" class="btn btn-primary">
+            <input type="submit" ng-hide="isEditMode" value="Create" ng-click="createAlbum(addEditAlbum)" class="btn btn-primary">
         </div>
     </div>
 </form>
