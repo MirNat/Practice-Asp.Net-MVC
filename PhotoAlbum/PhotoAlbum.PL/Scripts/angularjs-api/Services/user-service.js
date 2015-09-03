@@ -4,7 +4,18 @@
         var baseAddress = "/api/User/";
         var url = "";
         var self = this;
-        
+        var currenUserId = null;
+
+        self.setCurrentUserId = function () {
+            url = baseAddress + "GetCurrentUserId";
+            $http.get(url).success(function (data) {
+                currenUserId = data;
+            });
+        }();
+
+        self.getCurrentUserId = function () {
+            return currenUserId;
+        };
 
         self.isCurrentUserOwnerOfProfile = function (ownerOfProfileId) {
             url = baseAddress + "IsCurrentUserOwnerOfProfile/" + ownerOfProfileId;

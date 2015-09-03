@@ -14,12 +14,10 @@
     @*@Scripts.Render("~/bundles/angularjs")*@
     @Styles.Render("~/Content/custom-css")
     @Scripts.Render("~/bundles/jquery")
-
-
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-
+    @*@Scripts.Render("~/bundles/angularjs-api")*@
     <script src="~/Scripts/angularjs/checklist-model.js"></script>
     <script src="~/Scripts/angularjs-api/app.module.js"></script>
     <script src="~/Scripts/angularjs-api/app-config.js"></script>
@@ -38,17 +36,6 @@
 
     <div class="row">
         <div class="col-md-2 main-navigation-panel">
-            <!--header>
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <a class="site-home-link" href="#" ui-sref="Authorized.About">PhotoFan</a>
-                        <ul class="nav">
-                            <li><a href="#" ui-sref="Authorized.LatestPublications">Latest Public Albums</a></li>
-                            <li><a href="#" ui-sref="Authorized.AllPublications">All Public Albums</a></li>
-                            <li><a href="#" ui-sref="Authorized.MyProfile.Albums">My Profile</a></li>
-                        </ul>
-                    </div>
-                </div>-->
             <div class="control-panel">
                 <header>
                     <a href="#" ui-sref="Authorized.About" class="site-home-link">
@@ -72,25 +59,6 @@
                     Contact: <a href="mailto:info@photofan.com"> info@photofan.com</a>
                 </footer>
             </div>
-
-            <!--<tabset style="cursor: pointer" class="list-group navs" ng-controller="manageTabController">
-                <tab class="site-home-link" active="tabs[0].active" ui-sref="Authorized.About">PhotoFan</tab>
-                <tab class="list-group-item nav" active="tabs[1].active" heading="Latest Public Albums" ui-sref="Authorized.LatestPublications">
-                    Latest Public Albums
-                </tab>
-                <tab active="tabs[2].active" heading="All Public Albums" ui-sref="Authorized.AllPublications">
-                    All Public Album
-                </tab>
-                <tab active="tabs[3].active" heading="My Profile" ui-sref="Authorized.MyProfile">
-                    My Profile
-                </tab>
-            </tabset>-->
-            <!--</header>
-            <footer>
-                Copyright &copy 2015
-                <br>
-                Contact: <a href="mailto:info@photofan.com"> info@photofan.com</a>
-            </footer>-->
         </div>
         <div class="col-md-10 full-size-photo" ng-style="styleFullSizePhoto()">
             <div ui-view></div>

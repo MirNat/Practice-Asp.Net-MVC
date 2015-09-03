@@ -92,6 +92,7 @@ namespace PhotoAlbum.DAL.Repository
         /// <param name="entity"></param>
         public void Create(TEntity entity)
         {
+            this.context.Set<TEntity>().Attach(entity);
             this.context.Entry<TEntity>(entity).State = EntityState.Added;
             // this.context.Set<TEntity>().Add(entity);
             this.context.SaveChanges();

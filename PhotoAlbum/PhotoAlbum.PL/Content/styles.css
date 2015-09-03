@@ -201,3 +201,11 @@ color: rgb(255,250,189);
     padding-right: 7px;
     color: #FF9DFF;
 }
+
+.add-edit-album-categories-container {
+    margin-top: 15px;
+}
+
+.add-edit-album-category-label {
+    margin-right: 35px;
+}

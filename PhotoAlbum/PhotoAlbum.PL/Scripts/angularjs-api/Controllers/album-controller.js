@@ -41,7 +41,8 @@
                 }
                 case 'Authorized.MyProfile.Albums': {
                     userService.getCurrentUserAlbums().success(function (data) {
-                        $scope.albums = data;
+                        $scope.currentUserAlbums = data;
+                        $scope.albums = $scope.currentUserAlbums;
                         $scope.isCurrentUserOwnerOfProfile = true;
                     });
                     break;
@@ -96,7 +97,7 @@
                 albumService.createAlbum($scope.album).success(function (createdAlbumId) {
                     if (createdAlbumId) {
                         $scope.album.id = createdAlbumId;
-                        $scope.albums.push($scope.album);
+                        $scope.currentUserAlbums.push($scope.album);
                     }
                 });
             }

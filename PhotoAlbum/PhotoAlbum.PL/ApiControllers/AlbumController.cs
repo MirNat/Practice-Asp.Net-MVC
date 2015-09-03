@@ -94,11 +94,15 @@ namespace PhotoAlbum.PL.ApiControllers
         /// </summary>
         /// <param name="model"> posted data</param>
         [HttpPost]
-        public int CreateAlbum(Album model)
+        [Route("CreateAlbum")]
+        public int CreateAlbum(businessModels.FullAlbum model)
         {
-            if (ModelState.IsValid && albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), model.Id))
+            model.AuthorId = User.Identity.GetUserId();
+            model.CreationDate = DateTime.Now;
+            model.ModificationDate = DateTime.Now;
+            if (ModelState.IsValid)
             {
-                Album album = new Album()
+                /*Album album = new Album()
                     {
                         Name = model.Name,
                         Photos = model.Photos,
@@ -106,7 +110,8 @@ namespace PhotoAlbum.PL.ApiControllers
                         Categories = model.Categories,
                         CreationDate = DateTime.Now,
                         ModificationDate = DateTime.Now
-                    };
+                    };*/
+                var album = Mapper.Map<Album>(model);
                 albumRepository.Create(album);
                 return album.Id;
             }
@@ -118,6 +123,7 @@ namespace PhotoAlbum.PL.ApiControllers
         /// </summary>
         /// <param name="model"> posted data</param>
         [HttpPost]
+        [Route("UpdateAlbum")]
         public int UpdateAlbum(Album model)
         {
             if (ModelState.IsValid)
@@ -142,6 +148,7 @@ namespace PhotoAlbum.PL.ApiControllers
         /// </summary>
         /// <param name="id">identifier of album</param>
         [HttpPost]
+        [Route("DeleteAlbum")]
         public void DeleteAlbum(int id)
         {
             if (albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), id))

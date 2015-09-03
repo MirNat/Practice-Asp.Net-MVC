@@ -20,29 +20,16 @@ namespace PhotoAlbum.PL
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",         
+                      "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                       "~/Scripts/angularjs/angular.min.js",
                       "~/Scripts/angularjs/checklist-model.js",
-                      //"~/Scripts/angularjs/angular-ui/ui-bootstrap.min.js",
-                      //"~/Scripts/angularjs/angular-ui/ui-bootstrap-tpls.min.js",
+                //"~/Scripts/angularjs/angular-ui/ui-bootstrap.min.js",
+                //"~/Scripts/angularjs/angular-ui/ui-bootstrap-tpls.min.js",
                       "~/Scripts/angularjs/angular-ui-router.js"/*,
                       "~/Scripts/angularjs/angular-route.min.js"*/));
-
-            /*bundles.Add(new ScriptBundle("~/bundles/angularjs-api").Include(
-                      "~/bin/Scripts/angularjs/angularjs-api/app.module.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/app-config.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/controllers/album-controller.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/controllers/category-controller.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/controllers/manage-tab-controller.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/controllers/photo-controller.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/controllers/user-controller.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/services/album-service.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/services/category-service.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/services/photo-service.js",
-                      "~/bin/Scripts/angularjs/angularjs-api/services/user-service.js"));*/
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs-api").Include(
                       "~/Scripts/angularjs-api/app.module.js",
@@ -59,7 +46,7 @@ namespace PhotoAlbum.PL
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/darkly.bootstrap.min.css",
-                      //"~/Content/site.css",
+                //"~/Content/site.css",
                       "~/Content/styles.css"
                       ));
             bundles.Add(new StyleBundle("~/Content/custom-css").Include(

@@ -90,5 +90,13 @@ namespace PhotoAlbum.PL.ApiControllers
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
+
+          /// <returns>Id of current user</returns>
+        [HttpGet]
+        [Route("GetCurrentUserId")]
+        public string GetCurrentUserId()
+        {
+            return User.Identity.GetUserId();
+        }    
     }
 }
