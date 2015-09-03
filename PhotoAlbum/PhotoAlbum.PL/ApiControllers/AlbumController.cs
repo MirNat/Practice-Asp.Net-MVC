@@ -43,7 +43,7 @@ namespace PhotoAlbum.PL.ApiControllers
             var numberOfRecordsToSkip = (currentPageNumber - 1) * numberOfRecordsPerPage;
             var filteredByCategoryNameAlbums = albumRepository.GetAllByCategoryName(categoryNameForFilter);
             var filteredAlbumsModel = new businessModels.ScrollableAlbums();
-            
+
             filteredAlbumsModel.AlbumsToShow = filteredByCategoryNameAlbums
             .OrderBy(orderingAlbum => orderingAlbum.ModificationDate)
             .Skip(numberOfRecordsToSkip)
@@ -66,7 +66,8 @@ namespace PhotoAlbum.PL.ApiControllers
         [Route("GetLatestAlbums/{categoryNameForFilter}")]
         public List<businessModels.Album> GetLatestAlbums(string categoryNameForFilter)
         {
-            if(categoryNameForFilter == "View All"){
+            if (categoryNameForFilter == "View All")
+            {
                 categoryNameForFilter = "";
             }
             const int StartPageForLatestPublications = 1;
@@ -102,15 +103,7 @@ namespace PhotoAlbum.PL.ApiControllers
             model.ModificationDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                /*Album album = new Album()
-                    {
-                        Name = model.Name,
-                        Photos = model.Photos,
-                        AuthorId = model.AuthorId,
-                        Categories = model.Categories,
-                        CreationDate = DateTime.Now,
-                        ModificationDate = DateTime.Now
-                    };*/
+                //creating photos
                 var album = Mapper.Map<Album>(model);
                 albumRepository.Create(album);
                 return album.Id;
@@ -124,20 +117,20 @@ namespace PhotoAlbum.PL.ApiControllers
         /// <param name="model"> posted data</param>
         [HttpPost]
         [Route("UpdateAlbum")]
-        public int UpdateAlbum(Album model)
+        public int UpdateAlbum(businessModels.FullAlbum model)
         {
-            if (ModelState.IsValid)
+
+            if (ModelState.IsValid && albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), model.Id))
             {
-                if (albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), model.Id))
-                {
-                    Album album = albumRepository.GetById(model.Id);
-                    album.Name = model.Name;
-                    album.Photos = model.Photos;
-                    album.Categories = model.Categories;
-                    album.ModificationDate = DateTime.Now;
-                    albumRepository.Update(album);
-                    return album.Id;
-                }
+                model.ModificationDate = DateTime.Now;
+                //Album album = albumRepository.GetById(model.Id);
+                //album.Name = model.Name;
+                //album.Photos = model.Photos;
+                //album.Categories = model.Categories;
+                //album.ModificationDate = DateTime.Now;
+                var album = Mapper.Map<Album>(model);
+                albumRepository.Update(album);
+                return album.Id;
             }
 
             throw new HttpResponseException(HttpStatusCode.InternalServerError);

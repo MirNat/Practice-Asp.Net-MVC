@@ -3,7 +3,7 @@
 }
 <div class="row" ng-repeat="photo in album.Photos" ng-if="$index % 3 == 0">
     <div class="col-md-4 album-container" ng-repeat="photo in album.Photos.slice($index, $index + 3)" ui-sref="Authorized.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
-        <img src="{{photo.URL}}" alt="CoverPhoto of Album" class="album-cover-photo" ui-sref="Authorized.Album.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
+        <img src="{{photo.URL}}" alt="Album Photo" class="album-cover-photo" ui-sref="Authorized.Album.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
     </div>
 </div>
 

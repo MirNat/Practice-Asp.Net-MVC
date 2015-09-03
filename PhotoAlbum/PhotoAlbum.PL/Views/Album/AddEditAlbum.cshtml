@@ -1,11 +1,11 @@
 ﻿@{
     Layout = null;
 }
-<h4 class="add-edit-album-title">
+<h3 class="add-edit-album-title">
     <span ng-hide="isEditMode">Add </span>
     <span ng-hide="!isEditMode">Edit </span>
     Album
-</h4>
+</h3>
 <form name="addEditAlbum">
     <div class="row">
         <div class="col-md-7">
@@ -29,6 +29,12 @@
         <div class="col-md-5">
             <input type="submit" ng-hide="!isEditMode" value="Save" ng-click="updateAlbum(addEditAlbum)" class="btn btn-primary">
             <input type="submit" ng-hide="isEditMode" value="Create" ng-click="createAlbum(addEditAlbum)" class="btn btn-primary">
+        </div>
+    </div>
+    <h4 ng-show="{{album.Photos.length == 0}}"> No photos in album. Add some photos.</h4>
+    <div class="row" ng-repeat="photo in album.Photos" ng-if="$index % 3 == 0">
+        <div class="col-md-4 album-container" ng-repeat="photo in album.Photos.slice($index, $index + 3)" ui-sref="Authorized.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
+            <img src="{{photo.URL}}" alt="Album Photo" class="album-cover-photo" ui-sref="Authorized.Album.Photo({id: photo.Id})" ng-click="setSelectedPhoto(photo.Id)">
         </div>
     </div>
 </form>
