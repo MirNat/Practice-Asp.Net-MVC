@@ -122,13 +122,21 @@ namespace PhotoAlbum.PL.ApiControllers
 
             if (ModelState.IsValid && albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), model.Id))
             {
-                model.ModificationDate = DateTime.Now;
+                var album = albumRepository.GetById(model.Id);
+
+                album.ModificationDate = DateTime.Now;
+                album.Name = model.Name;
                 //Album album = albumRepository.GetById(model.Id);
                 //album.Name = model.Name;
                 //album.Photos = model.Photos;
-                //album.Categories = model.Categories;
+                //Mapper.CreateMap<businessModels.Category, Category>();
+                //album.Categories = (ICollection<Category>)model.Categories.Select(c => Mapper.Map<Category>(c));
                 //album.ModificationDate = DateTime.Now;
-                var album = Mapper.Map<Album>(model);
+                //album.Photos = null;
+                //model.Categories = null;
+                var album1 = Mapper.Map<Album>(model);
+                album.Categories = album1.Categories;
+                //album.Author = null;
                 albumRepository.Update(album);
                 return album.Id;
             }
@@ -141,13 +149,14 @@ namespace PhotoAlbum.PL.ApiControllers
         /// </summary>
         /// <param name="id">identifier of album</param>
         [HttpPost]
-        [Route("DeleteAlbum")]
-        public void DeleteAlbum(int id)
+        [Route("DeleteAlbum/{id}")]
+        public HttpResponseMessage DeleteAlbum(int id)
         {
             if (albumRepository.IsUserHaveAccessToManage(User.Identity.GetUserId(), id))
             {
                 Album album = albumRepository.GetById(id);
                 albumRepository.Delete(album);
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
             throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }

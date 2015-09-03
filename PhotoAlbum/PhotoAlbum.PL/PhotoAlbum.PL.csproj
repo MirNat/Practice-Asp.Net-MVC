@@ -318,6 +318,7 @@
     <Content Include="Views\Photo\FullSizePhoto.cshtml" />
     <Content Include="Views\Album\AlbumInfo.cshtml" />
     <Content Include="Views\Album\AddEditAlbum.cshtml" />
+    <Content Include="Views\Album\DeleteAlbumConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

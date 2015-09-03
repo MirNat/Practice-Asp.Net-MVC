@@ -39,8 +39,8 @@
         };
 
         self.deleteAlbum = function (id) {
-            url = baseAddress + "DeleteAlbum/";
-            return $http.post(url, id);
+            url = baseAddress + "DeleteAlbum/" + id;
+            return $http.post(url);
         };
     }]);
 })();

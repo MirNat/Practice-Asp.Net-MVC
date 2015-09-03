@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('photoAlbumApp').controller("albumController", function ($scope, $state, $stateParams, albumService, categoryService, userService) {
+    angular.module('photoAlbumApp').controller("albumController", function ($scope, $state, $stateParams, $modal, albumService, categoryService, userService) {
         $scope.totalNumberOfAlbums = 0;
         $scope.currentPageNumber = 1;
         $scope.maxSizeOfPage = 5;
@@ -12,6 +12,7 @@
         $scope.categories = [];
         $scope.isEditMode = null;
         $scope.isCurrentUserOwnerOfProfile = null;
+        $scope.isDeleted = null;
 
         $scope.setOrUpdateAlbums = function () {
             switch ($state.$current.name) {
@@ -121,16 +122,29 @@
             }
         };
 
-        $scope.deleteAlbum = function (albumId) {
+        /*$scope.deleteAlbum = function (deletedAlbumId) {
             $modal.open({
-                templateUrl: 'deleteAlbumModalDialog.html',
+                templateUrl: '/Album/DeleteAlbum',
                 controller: 'albumController',
                 resolve: {
-                    roomId: function (deletedRoomId) {
-                        return deletedRoomId;
+                    deletedAlbumId: function (deletedAlbumId) {
+                        return deletedAlbumId;
                     }
                 }
             });
-        }
+        }*/
+
+        $scope.deleteAlbum = function (deletedAlbumId) {
+            albumService.deleteAlbum(deletedAlbumId).then(function (isDeleted) {
+                //$modalInstance.close(isDeleted);
+            }, function () {
+               // console.log('Error. Can`t delete album.');
+            });
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+
     });
 })();

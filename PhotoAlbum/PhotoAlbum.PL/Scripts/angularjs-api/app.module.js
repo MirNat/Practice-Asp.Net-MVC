@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('photoAlbumApp', ['ui.router', 'checklist-model']);// , 'ui.bootstrap'
+    angular.module('photoAlbumApp', ['ui.router', 'checklist-model', 'ui.bootstrap']);
 })();

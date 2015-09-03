@@ -43,5 +43,10 @@ namespace PhotoAlbum.PL.Controllers
         {
             return View("AddEditAlbum");
         }
+
+        public ActionResult DeleteAlbum()
+        {
+            return View("DeleteAlbumConfirm");
+        }
     }
 }
