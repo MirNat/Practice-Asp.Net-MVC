@@ -21,7 +21,7 @@ body {
 }
 
 header {
-    padding-top: 10%;
+    padding-top: 20%;
 }
 
 footer {
@@ -40,6 +40,7 @@ footer {
     padding: 0px 15% 10%;
     color: #0fffeb;
     font-family: 'Esenin script Two', arial;
+    margin-left: 10%;
 }
 
 .site-home-link:hover {
@@ -162,6 +163,7 @@ color: rgb(255,250,189);
 
 .main-navigation-panel{
     height: 100vh;
+    padding-right: 0;
 }
 
 .album-list-category{
@@ -208,4 +210,9 @@ color: rgb(255,250,189);
 
 .add-edit-album-category-label {
     margin-right: 35px;
+}
+
+.back-button {
+    float: right;
+    margin-top: -20%;
 }

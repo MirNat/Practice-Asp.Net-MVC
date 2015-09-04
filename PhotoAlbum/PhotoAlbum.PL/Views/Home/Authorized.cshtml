@@ -9,11 +9,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
 
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/modernizr") 
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @*@Scripts.Render("~/bundles/angularjs")*@
     @Styles.Render("~/Content/custom-css")
-    @Scripts.Render("~/bundles/jquery")
+   
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
@@ -39,9 +41,10 @@
         <div class="col-md-2 main-navigation-panel">
             <div class="control-panel">
                 <header>
+                    <button onclick="history.back()" class="btn btn-default dropup-button back-button">Back</button>
                     <a href="#" ui-sref="Authorized.About" class="site-home-link">
                         PhotoFan
-                    </a>
+                    </a>              
                 </header>
                 <div class="list-group navs">
                     <a href="#" ui-sref="Authorized.LatestPublications" class="list-group-item nav">Latest Public Albums</a>

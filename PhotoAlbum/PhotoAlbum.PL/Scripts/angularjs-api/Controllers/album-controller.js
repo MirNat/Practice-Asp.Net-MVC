@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('photoAlbumApp').controller("albumController", function ($scope, $state, $stateParams, $modal, albumService, categoryService, userService) {
+    angular.module('photoAlbumApp').controller("albumController", function ($scope, $rootScope, $state, $stateParams, $modal,  $window, albumService, categoryService, userService) {
         $scope.totalNumberOfAlbums = 0;
         $scope.currentPageNumber = 1;
         $scope.maxSizeOfPage = 5;
@@ -79,7 +79,6 @@
         }
 
         $scope.setOrUpdateAlbums();
-
         $scope.pageChanged = function () {
             this.setOrUpdateAlbums();
         };
@@ -97,8 +96,9 @@
             if (addEditAlbum.$valid) {
                 albumService.createAlbum($scope.album).success(function (createdAlbumId) {
                     if (createdAlbumId) {
-                        $scope.album.id = createdAlbumId;
+                        $scope.album.Id = createdAlbumId;
                         $scope.currentUserAlbums.push($scope.album);
+                        $state.go("Authorized.MyProfile.Albums");
                     }
                 });
             }
@@ -107,44 +107,52 @@
         $scope.updateAlbum = function (addEditAlbum) {
             if (addEditAlbum.$valid) {
                 albumService.updateAlbum($scope.album).success(function (updatedAlbumId) {
-                    if (createdAlbumId) {
-                        $scope.album.id = createdAlbumId;
-                        var currentUserAlbums = userService.getCurrentUserAlbums();
-                        for (var i in currentUserAlbums) {
-                            if (currentUserAlbums[i].id == updatedAlbumId) {
-                                currentUserAlbums[i] = $scope.album;
+                    if (updatedAlbumId) {
+                        $scope.album.Id = updatedAlbumId;
+                        userService.getCurrentUserAlbums().success(function (data) {
+                            $scope.currentUserAlbums = data;
+                        });
+                        for (var i = 0; i < $scope.currentUserAlbums.length; i++) {
+                            if ($scope.currentUserAlbums[i].Id == updatedAlbumId) {
+                                $scope.currentUserAlbums[i] = $scope.album;
                                 break;
                             }
                         };
-                        userService.setCurrentUserAlbums(currentUserAlbums);
+
+                        for (var i = 0; i < $scope.albums.length; i++) {
+                            if ($scope.albums[i].Id == deletedAlbumId) {
+                                $scope.albums[i] = $scope.album;
+                                break;
+                            }
+                        };
                     }
                 });
             }
         };
-
-        /*$scope.deleteAlbum = function (deletedAlbumId) {
-            $modal.open({
-                templateUrl: '/Album/DeleteAlbum',
-                controller: 'albumController',
-                resolve: {
-                    deletedAlbumId: function (deletedAlbumId) {
-                        return deletedAlbumId;
-                    }
-                }
-            });
-        }*/
-
+        
         $scope.deleteAlbum = function (deletedAlbumId) {
             albumService.deleteAlbum(deletedAlbumId).then(function (isDeleted) {
-                //$modalInstance.close(isDeleted);
+                if (isDeleted) {
+                    userService.getCurrentUserAlbums().success(function (data) {
+                        $scope.currentUserAlbums = data;
+                    });
+                    for (var i = 0; i < $scope.currentUserAlbums.length; i++) {
+                        if ($scope.currentUserAlbums[i].Id == deletedAlbumId) {
+                            $scope.currentUserAlbums.splice(i, 1);
+                            break;
+                        }
+                    };
+
+                    for (var i = 0; i < $scope.albums.length; i++) {
+                        if ($scope.albums[i].Id == deletedAlbumId) {
+                            $scope.albums.splice(i, 1);
+                            break;
+                        }
+                    };
+                }
             }, function () {
                // console.log('Error. Can`t delete album.');
             });
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-
     });
 })();
